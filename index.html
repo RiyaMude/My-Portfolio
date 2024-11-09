@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #282c34;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #61dafb;
+    }
+
+    /* Header */
+    .header {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #282c34;
+    }
+
+    .header h1 {
+      font-size: 3em;
+    }
+
+    .header p {
+      font-size: 1.2em;
+      color: #aaa;
+    }
+
+    /* About Section */
+    .about {
+      padding: 40px 20px;
+      background-color: #181818;
+    }
+
+    .about h2 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .about ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .about li {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 40px 20px;
+      background-color: #1c1c1c;
+    }
+
+    .projects h2 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .project-item {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .project-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-item h3 {
+      color: #0f82ff;
+      font-size: 1.8em;
+    }
+
+    .project-item p {
+      font-size: 1.1em;
+    }
+
+    .project-item .btn {
+      background-color: #61dafb;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .project-item .btn:hover {
+      background-color: #0f82ff;
+    }
+
+    /* Work Experience Section */
+    .work-experience {
+      padding: 40px 20px;
+      background-color: #181818;
+    }
+
+    .work-experience h2 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .work-item {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .work-item h3 {
+      color: #0f82ff;
+      font-size: 1.8em;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #181818;
+    }
+
+    .contact h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      padding: 10px 20px;
+      background-color: #0f82ff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact button:hover {
+      background-color: #0066cc;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .modal-content {
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .modal-content h3 {
+      color: #0f82ff;
+    }
+
+    .close-btn {
+      background-color: #ff3b3b;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      float: right;
+    }
+
+    .close-btn:hover {
+      background-color: #ff1f1f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#work-experience">Work Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Riya Mude</h1>
+    <p>Computer Science Student | Aspiring Web Developer</p>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      I am a passionate computer science student with a deep interest in software development and web technologies. 
+      I enjoy working on projects that challenge my skills and allow me to grow as a developer. I aim to contribute to 
+      innovative projects that improve people's lives through technology.
+    </p>
+    <h3>Skills</h3>
+    <ul>
+      <li>Frontend Development: HTML, CSS, JavaScript, React.js</li>
+      <li>Backend Development: Node.js, Express</li>
+      <li>Database Management: MongoDB, MySQL</li>
+      <li>Version Control: Git, GitHub</li>
+      <li>UI/UX Design: Figma, Adobe XD</li>
+      <li>RESTful APIs & Web Services</li>
+    </ul>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+
+    <!-- Project 1 -->
+    <div class="project-item">
+      <h3>NGO Attendance App</h3>
+      <p>
+        The NGO Attendance App helps streamline the attendance tracking process for NGOs. It allows volunteers to check in 
+        and out easily, and generates reports to track participation.
+      </p>
+      <button class="btn" onclick="openModal('project1')">Learn More</button>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-item">
+      <h3>Hospital Management System</h3>
+      <p>
+        The Hospital Management System is designed to manage patient records and appointments efficiently, reducing administrative 
+        errors and improving patient care.
+      </p>
+      <button class="btn" onclick="openModal('project2')">Learn More</button>
+    </div>
+
+  </section>
+
+  <!-- Work Experience Section -->
+  <section id="work-experience" class="work-experience">
+    <h2>Work Experience</h2>
+
+    <!-- Work Item 1 -->
+    <div class="work-item">
+      <h3>Intern at APGAMA Technologies</h3>
+      <p>Worked on Python mini-projects, improving skills in REST APIs and collaborating in team environments.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Modal for Project Details -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">X</button>
+      <h3 id="modal-title">Project Title</h3>
+      <p id="modal-description">Detailed description of the project.</p>
+    </div>
+  </div>
+
+  <script>
+    // Modal functionality
+    function openModal(project) {
+      let modal = document.getElementById("modal");
+      let title = document.getElementById("modal-title");
+      let description = document.getElementById("modal-description");
+
+      if (project === 'project1') {
+        title.innerHTML = "NGO Attendance App";
+        description.innerHTML = "The NGO Attendance App helps streamline the attendance tracking process for NGOs...";
+      } else if (project === 'project2') {
+        title.innerHTML = "Hospital Management System";
+        description.innerHTML = "The Hospital Management System is designed to manage patient records and appointments efficiently...";
+      }
+
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
